@@ -26,7 +26,12 @@ function App() {
       setLoading(false);
     }
   };
+  const copyToClipboard = () => {
+    if (!translated) return;
 
+    navigator.clipboard.writeText(translated);
+    alert("Copied to clipboard!");
+  };
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white p-6 rounded-xl shadow-md w-full max-w-md">
@@ -60,6 +65,12 @@ function App() {
         </button>
 
         {error && <p className="text-red-500 mt-2">{error}</p>}
+        <button
+          onClick={copyToClipboard}
+          className="mt-2 bg-green-500 text-white px-3 py-1 rounded"
+        >
+          Copy
+        </button>
 
         <div className="mt-4 p-2 bg-gray-50 rounded">
           <strong>Output:</strong>
