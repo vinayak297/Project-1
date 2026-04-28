@@ -15,10 +15,25 @@ function Generator() {
         setResult(str);
     }, [length]);
 
-    // optional: auto-generate when length changes (only if auto is ON)
+    // ✅ Auto-generate every 1 second
     useEffect(() => {
-        if (auto) generateString();
-    }, [length, auto, generateString]);
+        let interval;
+
+        if (auto) {
+            interval = setInterval(() => {
+                generateString();
+            }, 1000);
+        }
+
+        return () => clearInterval(interval);
+    }, [auto, generateString]);
+
+    // ✅ Copy function
+    const copyToClipboard = () => {
+        if (!result) return;
+        navigator.clipboard.writeText(result);
+        alert("Copied to clipboard!");
+    };
 
     return (
         <div style={{ textAlign: "center", marginTop: "100px" }}>
@@ -30,9 +45,10 @@ function Generator() {
                     min="1"
                     max="50"
                     value={length}
-                    onChange={(e) => setLength(e.target.value)}
+                    onChange={(e) => setLength(Number(e.target.value))}
                     placeholder="Length"
                 />
+
                 <label style={{ marginLeft: "10px" }}>
                     <input
                         type="checkbox"
@@ -45,9 +61,17 @@ function Generator() {
 
             <div style={{ marginTop: "20px" }}>
                 <button onClick={generateString}>Generate</button>
+                <button
+                    onClick={copyToClipboard}
+                    style={{ marginLeft: "10px" }}
+                >
+                    Copy
+                </button>
             </div>
 
-            <p style={{ marginTop: "20px", fontSize: "20px" }}>{result}</p>
+            <p style={{ marginTop: "20px", fontSize: "20px" }}>
+                {result}
+            </p>
         </div>
     );
 }
