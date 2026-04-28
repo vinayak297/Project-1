@@ -8,6 +8,12 @@ function Home() {
             <Link to="/translator">
                 <button>Go to Translator</button>
             </Link>
+
+            <br /><br />
+
+            <Link to="/generator">
+                <button>Go to Generator</button>
+            </Link>
         </div>
     );
 }
