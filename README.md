@@ -4,6 +4,7 @@ A modern React-based web application that combines a Text Translator and a Rando
 This project demonstrates API integration, React hooks, and client-side routing.
 
 🌐 Live Demo
+https://texttranslator-three.vercel.app/
 
 ## 🚀 Features
 
@@ -34,6 +35,7 @@ This project demonstrates API integration, React hooks, and client-side routing.
 
 ## 🛠️ Tech Stack
 - React
+- CSS
 - RapidAPI
 - React Router
 - Vercel (Deployment)
